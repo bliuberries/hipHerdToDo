@@ -1,5 +1,5 @@
 {
-  "name": "hipHerdToDo",
+  "name": "hipherdtodo",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -13,6 +13,7 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
+    "react-dev": "webpack -d --watch",
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

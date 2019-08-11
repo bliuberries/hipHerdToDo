@@ -4,7 +4,7 @@ class AddToDo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      grocery: '',
+      todo: '',
     }
   }
 
@@ -14,27 +14,22 @@ class AddToDo extends React.Component {
     })
   }
 
-  onClick(e) {
-    
-  }
-
   addToList(e) {
     e.preventDefault();
-    this.props.addToList(this.state.grocery, this.state.quantity)
+    this.props.addToList(this.state.todo);
+    this.setState({
+      todo: ''
+    })
   }
 
   render() {
     return (
       <form onSubmit={this.addToList.bind(this)}>
         <label>
-          Item Description:
-        <input type="text" value={this.state.grocery} name='grocery' onChange={this.onChange.bind(this)} />
+          Todo:
+        <input type="text" value={this.state.todo} name='todo' onChange={this.onChange.bind(this)}></input>
         </label>
-        <label>
-          Quantity:
-        <input type="number" value={this.state.quantity} name='quantity' onChange={this.onChange.bind(this)} />
-        </label>
-        <input type="submit" value='Add me to the cart!' />
+        <input type="submit" />
       </form>
     )
   }

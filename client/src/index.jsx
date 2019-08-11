@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import AddToDo from './components/addToDo.jsx';
+import ToDoList from './components/toDoList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,37 +11,49 @@ class App extends React.Component {
     }
   }
 
-  addToList(toDo) {
-    var item = {
-      description: toDo,
-      quantity: Number(itemQuantity),
-    };
-    let identical = false;
-    for(let i = 0; i < this.state.list.length; i++) {
-      if(item.description === this.state.list[i].description) {
-        item.quantity += this.state.list[i].quantity;
-        this.state.list.splice(i, 1);
-        this.setState({
-          list: [...this.state.list, item]
-        })
-        identical = true;
-        break;
-      }
 
-    }
-    if (!identical) {
-      this.setState({
-        list: [...this.state.list, item]
-      })
-    }
+  addToList(toDo) {
+    console.log(toDo, 'init console');
+    fetch(`http://localhost:3000/addtodo/`, 
+    {
+      method: 'POST',
+      headers: {
+        // 'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({toDo}),
+    })
+    .then((res) => this.componentDidMount())
+    .catch((err) => console.log(err))
+        // success: () => {
+        //   this.componentDidMount();
+        //   console.log('when is Success being ran');
+        // },
   }
 
-  render () {
+
+  componentDidMount() {
+    fetch(`http://localhost:3000/getTodos/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          list: data,
+        });
+      });
+  }
+
+  render() {
     return (
       <div>
-        <h1>What's on your schedule?</h1>
-        <AddGrocery addToList={this.addToList.bind(this)}/>
-        <GroceryList groceries={this.state.list} />
+        <h1>My ToDos</h1>
+        <AddToDo addToList={this.addToList.bind(this)} />
+        <ToDoList tasklist={this.state.list} />
       </div>
     )
   }

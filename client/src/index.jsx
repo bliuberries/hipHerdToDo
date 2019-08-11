@@ -11,24 +11,45 @@ class App extends React.Component {
     }
   }
 
+  deleteToDo (todo) {
+    fetch(`https://localhost:3000/deletetodo/`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({todo})
+    })
+    .then((res) => res.json())
+    .then((res) => this.componentDidMount())
+    .catch((err) => console.log(err))
+  }
 
-  addToList(toDo) {
-    console.log(toDo, 'init console');
+  editTodo (todo) {
+    fetch(`https://localhost:3000/edittodo/`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({todo})
+    })
+    .then((res) => res.json())
+    .then((res) => this.componentDidMount())
+    .catch((err) => console.log(err))
+  }
+
+  addToList(todo) {
     fetch(`http://localhost:3000/addtodo/`, 
     {
       method: 'POST',
       headers: {
-        // 'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({toDo}),
+      body: JSON.stringify({todo}),
     })
     .then((res) => this.componentDidMount())
     .catch((err) => console.log(err))
-        // success: () => {
-        //   this.componentDidMount();
-        //   console.log('when is Success being ran');
-        // },
   }
 
 
@@ -41,7 +62,6 @@ class App extends React.Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         this.setState({
           list: data,
         });
@@ -53,7 +73,7 @@ class App extends React.Component {
       <div>
         <h1>My ToDos</h1>
         <AddToDo addToList={this.addToList.bind(this)} />
-        <ToDoList tasklist={this.state.list} />
+        <ToDoList tasklist={this.state.list} edit={this.editTodo.bind(this)} delete={this.deleteToDo.bind(this)}/>
       </div>
     )
   }

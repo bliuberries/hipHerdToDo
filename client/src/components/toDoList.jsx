@@ -9,7 +9,7 @@ const toDoList = (props) => (
           <td>The Daily Grind</td>
         </tr>
         {props.tasklist.map((item, index) => (
-          <ToDoItem item={item} key={index} edit={props.editTodo} delete={props.deleteTodo} />
+          <ToDoItem item={item} key={index} edit={props.edit} delete={props.delete} />
         ))}
       </tbody>
 

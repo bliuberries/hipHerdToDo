@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   deleteToDo (todo) {
-    fetch(`https://localhost:3000/deletetodo/`,
+    fetch(`http://localhost:3000/deletetodo/`,
     {
       method: 'DELETE',
       headers: {
@@ -20,13 +20,12 @@ class App extends React.Component {
       },
       body: JSON.stringify({todo})
     })
-    .then((res) => res.json())
     .then((res) => this.componentDidMount())
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err)) 
   }
 
   editTodo (todo) {
-    fetch(`https://localhost:3000/edittodo/`,
+    fetch(`http://localhost:3000/edittodo/`,
     {
       method: 'PUT',
       headers: {
@@ -37,6 +36,10 @@ class App extends React.Component {
     .then((res) => res.json())
     .then((res) => this.componentDidMount())
     .catch((err) => console.log(err))
+  }
+
+  markComplete() {
+
   }
 
   addToList(todo) {

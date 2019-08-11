@@ -31,14 +31,24 @@ app.post('/addtodo', (req, res) => {
 })
 
 app.delete('/deletetodo', (req,res) => {
-  console.log(req.body.todo, 'delete API');
-  db.connection.query(`DELETE FROM "mytodo" where "todo" = "${req.body.todo}"`, (err, data) => {
+  db.connection.query(`DELETE FROM mytodo where todo = "${req.body.todo}"`, (err, data) => {
+    res.send();
+  })
+})
+
+// app.get('/', (req, res) => {
+//   db.connection.query(`SELECT `)
+// })
+
+app.put('/markcomplete', (req, res) => {
+  // console.log(req.body.todo, 'update API');
+  db.connection.query(`UPDATE "mytodo" SET "completed" = "${req.body.todo}" `, (err, data) => {
     res.send();
   })
 })
 
 app.put('/edittodo', (req, res) => {
-  console.log(req.body.todo, 'update API');
+  // console.log(req.body.todo, 'update API');
   db.connection.query(`UPDATE "mytodo" SET "todo" = "${req.body.todo}"`, (err, data) => {
     res.send();
   })

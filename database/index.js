@@ -1,7 +1,11 @@
 const mysql = require('mysql');
-const mysqlConfig = require('./config.js');
 
-const connection = mysql.createConnection(mysqlConfig);
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'hipherdtodo',
+});
 
 module.exports = {
   connection

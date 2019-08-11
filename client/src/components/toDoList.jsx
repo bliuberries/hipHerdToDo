@@ -3,10 +3,17 @@ import ToDoItem from './toDoItem.jsx'
 
 const toDoList = (props) => (
   <div className="todolist">
-    <div>The Daily Grind</div>
-    {props.tasklist.map((item, index) => (
-      <ToDoItem item={item} key={index} />
-    ))}
+    <table>
+      <tbody>
+        <tr>
+          <td>The Daily Grind</td>
+        </tr>
+        {props.tasklist.map((item, index) => (
+          <ToDoItem item={item} key={index} edit={props.editTodo} delete={props.deleteTodo} />
+        ))}
+      </tbody>
+
+    </table>
   </div>
 )
 

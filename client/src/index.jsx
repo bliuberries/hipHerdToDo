@@ -74,6 +74,7 @@ class App extends React.Component {
         <h1>My ToDos</h1>
         <AddToDo addToList={this.addToList.bind(this)} />
         <ToDoList tasklist={this.state.list} edit={this.editTodo.bind(this)} delete={this.deleteToDo.bind(this)}/>
+        {/* <ToDoList allprops={{list:this.state.list, edit:this.editTodo.bind(this), delete:this.deleteToDo.bind(this)  }}/> */}
       </div>
     )
   }

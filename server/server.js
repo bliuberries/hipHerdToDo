@@ -36,6 +36,11 @@ app.delete('/deletetodo', (req,res) => {
   })
 })
 
+app.delete('/deleteall', (req, res) => {
+  db.connection.query('DELETE FROM mytodo', (err, data) => {
+    res.send();
+  })
+})
 // app.get('/', (req, res) => {
 //   db.connection.query(`SELECT `)
 // })

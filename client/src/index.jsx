@@ -39,7 +39,14 @@ class App extends React.Component {
   }
 
   markComplete() {
-
+    fetch(`http://localhost:3000/markcomplete`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({todo})
+    })
   }
 
   addToList(todo) {
@@ -55,6 +62,18 @@ class App extends React.Component {
     .catch((err) => console.log(err))
   }
 
+  deleteAll() {
+    fetch(`http://localhost:3000/deleteall/`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    })
+    .then((res) => this.componentDidMount())
+    .catch((err) => console.log(err)) 
+  }
 
   componentDidMount() {
     fetch(`http://localhost:3000/getTodos/`, {
@@ -78,6 +97,7 @@ class App extends React.Component {
         <AddToDo addToList={this.addToList.bind(this)} />
         <ToDoList tasklist={this.state.list} edit={this.editTodo.bind(this)} delete={this.deleteToDo.bind(this)}/>
         {/* <ToDoList allprops={{list:this.state.list, edit:this.editTodo.bind(this), delete:this.deleteToDo.bind(this)  }}/> */}
+        <button onClick={this.deleteAll.bind(this)}>Delete All</button>
       </div>
     )
   }

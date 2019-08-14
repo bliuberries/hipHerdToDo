@@ -47,6 +47,7 @@ class ToDoItem extends React.Component {
   }
 
   render() {
+    // console.log('anything')
     return (
       <tr className='todoItemRow' style={{ backgroundColor: this.state.completed === "true" ? 'darkgrey' : 'darkslategrey' }}>
         <td onClick={this.completed.bind(this)} colSpan={3}>{this.props.todo.todo}</td>

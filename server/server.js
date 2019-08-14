@@ -41,13 +41,18 @@ app.delete('/deleteall', (req, res) => {
     res.send();
   })
 })
-// app.get('/', (req, res) => {
-//   db.connection.query(`SELECT `)
-// })
+
 
 app.put('/markcomplete', (req, res) => {
-  // console.log(req.body.todo, 'update API');
-  db.connection.query(`UPDATE "mytodo" SET "completed" = "${req.body.todo}" `, (err, data) => {
+  console.log(req.body.bool, 'markcomplete');
+  db.connection.query(`UPDATE mytodo SET completed = "${req.body.bool}" WHERE todo = "${req.body.todo}"`, (err, data) => {
+    res.send();
+  })
+})
+
+app.put('/markincomplete', (req, res) => {
+  console.log(req.body.bool, 'markincomplete');
+  db.connection.query(`UPDATE mytodo SET completed = "${req.body.bool}" WHERE todo = "${req.body.todo}"`, (err, data) => {
     res.send();
   })
 })

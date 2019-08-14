@@ -11,68 +11,88 @@ class App extends React.Component {
     }
   }
 
-  deleteToDo (todo) {
+  deleteToDo(todo) {
     fetch(`http://localhost:3000/deletetodo/`,
-    {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({todo})
-    })
-    .then((res) => this.componentDidMount())
-    .catch((err) => console.log(err)) 
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ todo })
+      })
+      .then(() => 
+      this.setState({
+        list: this.state.list.filter(obj => obj.todo !== todo)
+      }))
+      .catch((err) => console.log(err))
   }
 
-  editTodo (todo) {
+  editTodo(todo) {
     fetch(`http://localhost:3000/edittodo/`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({todo})
-    })
-    .then((res) => res.json())
-    .then((res) => this.componentDidMount())
-    .catch((err) => console.log(err))
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ todo })
+      })
+      .then((res) => res.json())
+      .then((res) => this.componentDidMount())
+      .catch((err) => console.log(err))
   }
 
-  markComplete() {
-    fetch(`http://localhost:3000/markcomplete`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({todo})
-    })
+  markComplete(todo, bool) {
+    console.log(bool, typeof bool, 'markcomplete')
+    if (bool === "true") {
+      fetch(`http://localhost:3000/markcomplete`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ todo, bool })
+        })
+    } else {
+      fetch(`http://localhost:3000/markincomplete`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ todo, bool })
+        })
+    }
   }
 
   addToList(todo) {
-    fetch(`http://localhost:3000/addtodo/`, 
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({todo}),
-    })
-    .then((res) => this.componentDidMount())
-    .catch((err) => console.log(err))
+    fetch(`http://localhost:3000/addtodo/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ todo }),
+      })
+      .then((res) =>
+        this.setState({
+          list: this.state.list.concat([{todo, completed: 'false'}])
+        }))
+      .catch((err) => console.log(err))
   }
 
   deleteAll() {
     fetch(`http://localhost:3000/deleteall/`,
-    {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({})
-    })
-    .then((res) => this.componentDidMount())
-    .catch((err) => console.log(err)) 
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+      })
+      .then((res) => this.setState({
+        list: []
+      }))
+      .catch((err) => console.log(err))
   }
 
   componentDidMount() {
@@ -93,10 +113,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>My ToDos</h1>
+        <h1 className='title '>My ToDos</h1>
         <AddToDo addToList={this.addToList.bind(this)} />
-        <ToDoList tasklist={this.state.list} edit={this.editTodo.bind(this)} delete={this.deleteToDo.bind(this)}/>
-        {/* <ToDoList allprops={{list:this.state.list, edit:this.editTodo.bind(this), delete:this.deleteToDo.bind(this)  }}/> */}
+        <ToDoList tasklist={this.state.list} edit={this.editTodo.bind(this)} delete={this.deleteToDo.bind(this)} mark={this.markComplete.bind(this)} />
         <button onClick={this.deleteAll.bind(this)}>Delete All</button>
       </div>
     )

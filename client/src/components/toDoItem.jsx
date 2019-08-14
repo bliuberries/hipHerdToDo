@@ -8,16 +8,17 @@ class ToDoItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      clicked: false,
+      completed: this.props.item.completed,
       editHover: false,
       deleteHover: false,
     }
   }
 
-  clicked () {
+  completed () {
     this.setState({
-      clicked: !this.state.clicked
+      completed: this.state.completed === "true" ? "false" : "true"
     })
+    this.props.mark(this.props.item.todo, this.state.completed === "true" ? "false" : "true");
   }
 
   mouseEnter(state) {
@@ -30,8 +31,8 @@ class ToDoItem extends React.Component {
         editHover: true
       })
     }
-    
   }
+
   mouseLeave(state) {
     if(state === 'd') {
       this.setState({
@@ -46,8 +47,27 @@ class ToDoItem extends React.Component {
 
   render() {
     return (
-      <tr onClick={this.clicked.bind(this)} style={{ textDecoration: this.state.clicked ? 'line-through' : 'none' }}>
-        <td><input type="checkbox"/></td><td>{this.props.item.todo}</td><td className='editIcon'><img onClick={() => this.props.edit()} onMouseEnter={() => this.mouseEnter('e')} onMouseLeave={() => this.mouseLeave('e')} src={this.state.editHover ? edith : editimg}/></td><td className='deleteIcon'><img onClick={() => this.props.delete(this.props.item.todo)} onMouseEnter={() => this.mouseEnter('d')} onMouseLeave={() =>  this.mouseLeave('d')} src={this.state.deleteHover ? delh : del}/></td>
+      <tr className='todoItemRow' style={{ textDecoration: this.state.completed === "true" ? 'line-through' : 'none' }}>
+        {/* <td><input type="checkbox" onClick={this.completed.bind(this)}/></td> */}
+        <td onClick={this.completed.bind(this)}>{this.props.item.todo}</td>
+        <td>
+          <img
+            className='editIcon' 
+            onClick={() => this.props.edit()} 
+            onMouseEnter={() => this.mouseEnter('e')} 
+            onMouseLeave={() => this.mouseLeave('e')} 
+            src={this.state.editHover ? edith : editimg}
+          />
+        </td>
+        <td>
+          <img 
+            className='deleteIcon'
+            onClick={() => this.props.delete(this.props.item.todo)} 
+            onMouseEnter={() => this.mouseEnter('d')} 
+            onMouseLeave={() =>  this.mouseLeave('d')} 
+            src={this.state.deleteHover ? delh : del}
+          />
+        </td>
       </tr>
     )
   }

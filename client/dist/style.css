@@ -1,0 +1,31 @@
+body {
+  background-color: rgb(172, 154, 163);
+}
+
+.title {
+  text-align: center;
+}
+
+.todoList {
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+}
+
+.todoItemRow {
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+.editIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.deleteIcon {
+  width: 25px;
+  height: 25px;
+}
+

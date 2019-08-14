@@ -46,16 +46,21 @@ class ToDoList extends Component {
 
   render() {
     return (
-      <div className="todoList">
-        <table >
-          <tbody>
+      <div className="divToDoList">
+        <table className="todoList">
+          <tbody className='listTbody'>
             <tr>
-              <td>Things to chip away at...</td>
+              <td className='listTitle' colSpan={3}>Things to chip away at...</td>
             </tr>
             {this.state.list.map((todo, index) => (
               <ToDoItem todo={todo} key={index} delete={this.deleteOne.bind(this)} />
             ))}
-            <tr><td><button onClick={this.deleteTodos.bind(this)}>Delete All</button></td></tr>
+            <tr><td colSpan={3}>
+              <button className='deleteButton' 
+                onClick={this.deleteTodos.bind(this)}>
+                Delete All
+              </button>
+            </td></tr>
           </tbody>
 
         </table>

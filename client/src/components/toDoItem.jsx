@@ -49,7 +49,6 @@ class ToDoItem extends React.Component {
   render() {
     return (
       <tr className='todoItemRow' style={{ textDecoration: this.state.completed === "true" ? 'line-through' : 'none' }}>
-        {/* <td><input type="checkbox" onClick={this.completed.bind(this)}/></td> */}
         <td onClick={this.completed.bind(this)}>{this.props.todo.todo}</td>
         <td>
           <img

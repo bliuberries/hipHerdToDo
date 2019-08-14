@@ -2,23 +2,42 @@ body {
   background-color: rgb(172, 154, 163);
 }
 
+.addToDo {
+  display: flex;
+  justify-content: center;
+}
+
 .title {
   text-align: center;
+}
+
+.divToDoList {
+  display: flex;
+  justify-content: center;
+
 }
 
 .todoList {
   display: flex;
   justify-content: center;
-  /* text-align: center; */
+  border: 1px solid black;
+  width: 50%;
+  border-collapse: collapse;
+  text-align: center;
 }
 
 .todoItemRow {
   border: 1px solid black;
-  border-radius: 10px;
   text-align: center;
 }
 
+.listTbody {
+  display: table;
+  justify-content: center;
+}
+.listTitle {
 
+}
 .editIcon {
   width: 25px;
   height: 25px;
@@ -29,3 +48,6 @@ body {
   height: 25px;
 }
 
+.deleteButton {
+  position: relative;
+}

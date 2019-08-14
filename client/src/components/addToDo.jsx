@@ -20,7 +20,6 @@ class AddToDo extends React.Component {
     TodoServices
       .addToList(this.state.todo)
       .then(() => {
-        console.log('todo', this.state.todo);
         document.dispatchEvent(new CustomEvent('addToList', {bubbles: false, detail: { text:this.state.todo }}))
       })
       .then(() => {
@@ -33,10 +32,10 @@ class AddToDo extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.addToList.bind(this)}>
+      <form className='addToDo' onSubmit={this.addToList.bind(this)}>
         <label>
           Todo:
-        <input type="text" value={this.state.todo} name='todo' onChange={this.onChange.bind(this)}></input>
+        <input type="text" value={this.state.todo} name='todo' onChange={this.onChange.bind(this)}/>
         </label>
         <input type="submit" />
       </form>

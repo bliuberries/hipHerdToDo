@@ -13,8 +13,8 @@ class App extends React.Component {
     return (
       <div>
         <h1 className='title '>Project Tracker</h1>
-        <AddToDo id='addToDo'/>
-        <ToDoList id='toDoList'/>
+        <AddToDo />
+        <ToDoList />
       </div>
     )
   }

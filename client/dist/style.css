@@ -27,8 +27,11 @@ body {
 }
 
 .todoItemRow {
+  background-color: darkslategrey;
   border: 1px solid black;
   text-align: center;
+  padding: 10px;
+  
 }
 
 .listTbody {

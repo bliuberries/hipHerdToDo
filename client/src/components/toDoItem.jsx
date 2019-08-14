@@ -48,8 +48,8 @@ class ToDoItem extends React.Component {
 
   render() {
     return (
-      <tr className='todoItemRow' style={{ textDecoration: this.state.completed === "true" ? 'line-through' : 'none' }}>
-        <td onClick={this.completed.bind(this)}>{this.props.todo.todo}</td>
+      <tr className='todoItemRow' style={{ backgroundColor: this.state.completed === "true" ? 'darkgrey' : 'darkslategrey' }}>
+        <td onClick={this.completed.bind(this)} colSpan={3}>{this.props.todo.todo}</td>
         <td>
           <img
             className='editIcon' 
@@ -58,8 +58,6 @@ class ToDoItem extends React.Component {
             onMouseLeave={() => this.mouseLeave('e')} 
             src={this.state.editHover ? edith : editimg}
           />
-        </td>
-        <td>
           <img 
             className='deleteIcon'
             onClick={() => this.props.delete(this.props.todo.todo)} 

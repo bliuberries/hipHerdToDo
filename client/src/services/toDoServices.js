@@ -25,7 +25,7 @@ const editTodo = (todo) => {
 
 const markComplete = (todo, bool) => {
     if (bool === "true") {
-      fetch(`http://localhost:3000/markcomplete`,
+      return fetch(`http://localhost:3000/markcomplete`,
         {
           method: 'PUT',
           headers: {
@@ -34,7 +34,7 @@ const markComplete = (todo, bool) => {
           body: JSON.stringify({ todo, bool })
         })
     } else {
-      fetch(`http://localhost:3000/markincomplete`,
+      return fetch(`http://localhost:3000/markincomplete`,
         {
           method: 'PUT',
           headers: {

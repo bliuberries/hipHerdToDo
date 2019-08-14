@@ -9,6 +9,10 @@ class ToDoList extends Component {
       list: [],
       displayCompleted: 'showAll'
     }
+
+    this.showToDos = this.showToDos.bind(this)
+    this.deleteOne = this.deleteOne.bind(this)
+    this.deleteTodos = this.deleteTodos.bind(this)
   }
 
   componentDidMount() {
@@ -16,6 +20,14 @@ class ToDoList extends Component {
       this.setState({
         list: this.state.list.concat([{ todo: e.detail.text, completed: 'false' }])
       })
+    });
+
+    document.addEventListener("markComplete", (e) => {
+      const newState = this.state.list
+      newState[e.detail.index].completed = e.detail.completed
+      this.setState(
+        this.state.list = newState
+      )
     });
 
     TodoServices.getAllTodos().then(data => {
@@ -35,6 +47,17 @@ class ToDoList extends Component {
       })
   }
 
+
+  renderList() {
+    return this.state.list.map((todo, index) => (
+      this.state.displayCompleted ===  'showAll' ? 
+      <ToDoItem todo={todo} key={index} index={index} delete={this.deleteOne} /> 
+      : this.state.displayCompleted ===  todo.completed ? 
+      <ToDoItem todo={todo} key={index} index={index} delete={this.deleteOne} /> 
+      : null
+    ))
+  }
+
   deleteTodos() {
     TodoServices
       .deleteAll()
@@ -45,31 +68,9 @@ class ToDoList extends Component {
       })
   }
 
-  renderList() {
-    return this.state.list.map((todo, index) => (
-      this.state.displayCompleted ===  'showAll' ? 
-      <ToDoItem todo={todo} key={index} delete={this.deleteOne.bind(this)} /> 
-      : this.state.displayCompleted ===  todo.completed ? 
-      <ToDoItem todo={todo} key={index} delete={this.deleteOne.bind(this)} /> 
-      : null
-    ))
-
-  }
-  showAll() {
+  showToDos(display) {
     this.setState({
-      displayCompleted: 'showAll'
-    })
-  }
-
-  showCompleted() {
-    this.setState({
-      displayCompleted: 'true'
-    })
-  }
-
-  showIncomplete() {
-    this.setState({
-      displayCompleted: 'false'
+      displayCompleted: display
     })
   }
 
@@ -85,25 +86,25 @@ class ToDoList extends Component {
             <tr className='bottomButtons'>
               <td>
                 <button className='deleteButton'
-                  onClick={this.deleteTodos.bind(this)}>
+                  onClick={() => this.deleteTodos()}>
                   Delete All
                   </button>
               </td>
               <td >
                 <button className='showComplete'
-                  onClick={this.showCompleted.bind(this)}>
+                  onClick={() => this.showToDos('true')}>
                   Complete
                   </button>
               </td>
               <td >
                 <button className='showIncomplete'
-                  onClick={this.showIncomplete.bind(this)}>
+                  onClick={() => this.showToDos('false')}>
                   Incomplete
                   </button>
               </td>
               <td >
                 <button className='showAll'
-                  onClick={this.showAll.bind(this)}>
+                  onClick={() => this.showToDos('showAll')}>
                   Show All
                   </button>
               </td>

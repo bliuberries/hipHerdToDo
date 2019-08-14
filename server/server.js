@@ -8,7 +8,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(cors());
 
 const port = 3000;

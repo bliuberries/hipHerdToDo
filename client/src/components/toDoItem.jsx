@@ -12,14 +12,28 @@ class ToDoItem extends React.Component {
       completed: this.props.todo.completed,
       editHover: false,
       deleteHover: false,
+      edit: this.props.todo.todo
     }
   }
 
   completed () {
-    this.setState({
-      completed: this.state.completed === "true" ? "false" : "true"
+    TodoServices.markComplete(this.props.todo.todo, this.state.completed === "true" ? "false" : "true")
+    .then(() =>{
+      this.setState({
+        completed: this.state.completed === "true" ? "false" : "true"
+      })
     })
-    TodoServices.markComplete(this.props.todo.todo, this.state.completed === "true" ? "false" : "true");
+    .then(() => {
+      document.dispatchEvent(new CustomEvent('markComplete', 
+      {
+        bubbles: false, 
+        detail: { 
+          title: this.props.todo.todo,
+          completed: this.state.completed,
+          index: this.props.index
+        }
+      }))
+    })
   }
 
   mouseEnter(state) {
@@ -46,8 +60,11 @@ class ToDoItem extends React.Component {
     }
   }
 
+  editItem(todo) {
+
+  }
+
   render() {
-    // console.log('anything')
     return (
       <tr className='todoItemRow' style={{ backgroundColor: this.state.completed === "true" ? 'darkgrey' : 'darkslategrey' }}>
         <td onClick={this.completed.bind(this)} colSpan={3}>{this.props.todo.todo}</td>

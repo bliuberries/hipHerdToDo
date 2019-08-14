@@ -44,14 +44,12 @@ app.delete('/deleteall', (req, res) => {
 
 
 app.put('/markcomplete', (req, res) => {
-  console.log(req.body.bool, 'markcomplete');
   db.connection.query(`UPDATE mytodo SET completed = "${req.body.bool}" WHERE todo = "${req.body.todo}"`, (err, data) => {
     res.send();
   })
 })
 
 app.put('/markincomplete', (req, res) => {
-  console.log(req.body.bool, 'markincomplete');
   db.connection.query(`UPDATE mytodo SET completed = "${req.body.bool}" WHERE todo = "${req.body.todo}"`, (err, data) => {
     res.send();
   })

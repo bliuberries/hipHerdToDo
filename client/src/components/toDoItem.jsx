@@ -3,12 +3,13 @@ import edith from '../images/hedit.png';
 import editimg from '../images/edit.png';
 import del from '../images/delete.png';
 import delh from '../images/hdelete.png';
+import TodoServices from '../services/toDoServices.js';
 
 class ToDoItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      completed: this.props.item.completed,
+      completed: this.props.todo.completed,
       editHover: false,
       deleteHover: false,
     }
@@ -18,7 +19,7 @@ class ToDoItem extends React.Component {
     this.setState({
       completed: this.state.completed === "true" ? "false" : "true"
     })
-    this.props.mark(this.props.item.todo, this.state.completed === "true" ? "false" : "true");
+    TodoServices.markComplete(this.props.todo.todo, this.state.completed === "true" ? "false" : "true");
   }
 
   mouseEnter(state) {
@@ -49,11 +50,11 @@ class ToDoItem extends React.Component {
     return (
       <tr className='todoItemRow' style={{ textDecoration: this.state.completed === "true" ? 'line-through' : 'none' }}>
         {/* <td><input type="checkbox" onClick={this.completed.bind(this)}/></td> */}
-        <td onClick={this.completed.bind(this)}>{this.props.item.todo}</td>
+        <td onClick={this.completed.bind(this)}>{this.props.todo.todo}</td>
         <td>
           <img
             className='editIcon' 
-            onClick={() => this.props.edit()} 
+            onClick={() => TodoServices.editTodo()} 
             onMouseEnter={() => this.mouseEnter('e')} 
             onMouseLeave={() => this.mouseLeave('e')} 
             src={this.state.editHover ? edith : editimg}
@@ -62,7 +63,7 @@ class ToDoItem extends React.Component {
         <td>
           <img 
             className='deleteIcon'
-            onClick={() => this.props.delete(this.props.item.todo)} 
+            onClick={() => this.props.delete(this.props.todo.todo)} 
             onMouseEnter={() => this.mouseEnter('d')} 
             onMouseLeave={() =>  this.mouseLeave('d')} 
             src={this.state.deleteHover ? delh : del}

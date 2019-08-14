@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoServices from '../services/toDoServices.js';
 
 class AddToDo extends React.Component {
   constructor(props) {
@@ -16,10 +17,18 @@ class AddToDo extends React.Component {
 
   addToList(e) {
     e.preventDefault();
-    this.props.addToList(this.state.todo);
-    this.setState({
-      todo: ''
-    })
+    TodoServices
+      .addToList(this.state.todo)
+      .then(() => {
+        console.log('todo', this.state.todo);
+        document.dispatchEvent(new CustomEvent('addToList', {bubbles: false, detail: { text:this.state.todo }}))
+      })
+      .then(() => {
+        this.setState({
+          todo: ''
+        })  
+      })
+
   }
 
   render() {

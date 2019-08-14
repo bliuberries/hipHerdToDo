@@ -7,7 +7,7 @@ class ToDoList extends Component {
     super()
     this.state = {
       list: [],
-      display: 'showAll'
+      displayCompleted: 'showAll'
     }
   }
 
@@ -46,38 +46,30 @@ class ToDoList extends Component {
   }
 
   renderList() {
-    if (this.state.display === 'showAll') {
-      return this.state.list.map((todo, index) => (
-        <ToDoItem todo={todo} key={index} delete={this.deleteOne.bind(this)} />
-      ))
-    } else if (this.state.display === 'showCompleted') {
-      return this.state.list.map((todo, index) => (
-        todo.completed === "true" ? <ToDoItem todo={todo} key={index} delete={this.deleteOne.bind(this)} /> : null
-      ))
-    } else {
-      return this.state.list.map((todo, index) => (
-        todo.completed === "false" ? <ToDoItem todo={todo} key={index} delete={this.deleteOne.bind(this)} /> : null
-      ))
-    }
+    return this.state.list.map((todo, index) => (
+      this.state.displayCompleted ===  'showAll' ? 
+      <ToDoItem todo={todo} key={index} delete={this.deleteOne.bind(this)} /> 
+      : this.state.displayCompleted ===  todo.completed ? 
+      <ToDoItem todo={todo} key={index} delete={this.deleteOne.bind(this)} /> 
+      : null
+    ))
+
   }
   showAll() {
-    console.log('show all');
     this.setState({
-      display: 'showAll'
+      displayCompleted: 'showAll'
     })
   }
 
   showCompleted() {
-    console.log('show completed');
     this.setState({
-      display: 'showCompleted'
+      displayCompleted: 'true'
     })
   }
 
   showIncomplete() {
-    console.log('show incomplete');
     this.setState({
-      display: 'showIncomplete'
+      displayCompleted: 'false'
     })
   }
 

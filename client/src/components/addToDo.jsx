@@ -7,6 +7,9 @@ class AddToDo extends React.Component {
     this.state = {
       todo: '',
     }
+
+    this.addToList = this.addToList.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
   onChange(e) {
@@ -32,10 +35,10 @@ class AddToDo extends React.Component {
 
   render() {
     return (
-      <form className='addToDo' onSubmit={this.addToList.bind(this)}>
+      <form className='addToDo' onSubmit={(e) => this.addToList(e)}>
         <label>
           Todo:
-        <input type="text" value={this.state.todo} name='todo' onChange={this.onChange.bind(this)}/>
+        <input type="text" value={this.state.todo} name='todo' onChange={(e) => this.onChange(e)}/>
         </label>
         <input type="submit" />
       </form>

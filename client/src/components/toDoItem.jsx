@@ -4,6 +4,8 @@ import editimg from '../images/edit.png';
 import del from '../images/delete.png';
 import delh from '../images/hdelete.png';
 import TodoServices from '../services/toDoServices.js';
+import EditModal from './modals/editModal.jsx'
+
 
 class ToDoItem extends React.Component {
   constructor(props) {
@@ -12,36 +14,45 @@ class ToDoItem extends React.Component {
       completed: this.props.todo.completed,
       editHover: false,
       deleteHover: false,
-      edit: this.props.todo.todo
+      modalShow: false
     }
+    this.setModalShow = this.setModalShow.bind(this)
+    this.completed = this.completed.bind(this)
   }
 
-  completed () {
-    TodoServices.markComplete(this.props.todo.todo, this.state.completed === "true" ? "false" : "true")
-    .then(() =>{
-      this.setState({
-        completed: this.state.completed === "true" ? "false" : "true"
+  setModalShow(bool) {
+    this.setState({
+      modalShow: bool
+    })
+  }
+
+  completed() {
+    TodoServices
+      .markComplete(this.props.todo.todo, this.state.completed === "true" ? "false" : "true")
+      .then(() => {
+        this.setState({
+          completed: this.state.completed === "true" ? "false" : "true"
+        })
       })
-    })
-    .then(() => {
-      document.dispatchEvent(new CustomEvent('markComplete', 
-      {
-        bubbles: false, 
-        detail: { 
-          title: this.props.todo.todo,
-          completed: this.state.completed,
-          index: this.props.index
-        }
-      }))
-    })
+      .then(() => {
+        document.dispatchEvent(new CustomEvent('markComplete',
+          {
+            bubbles: false,
+            detail: {
+              title: this.props.todo.todo,
+              completed: this.state.completed,
+              index: this.props.index
+            }
+          }))
+      })
   }
 
   mouseEnter(state) {
-    if(state === 'd') {
+    if (state === 'd') {
       this.setState({
         deleteHover: true
       })
-    } else if(state === 'e') {
+    } else if (state === 'e') {
       this.setState({
         editHover: true
       })
@@ -49,41 +60,49 @@ class ToDoItem extends React.Component {
   }
 
   mouseLeave(state) {
-    if(state === 'd') {
+    if (state === 'd') {
       this.setState({
         deleteHover: false
       })
-    } else if(state === 'e') {
+    } else if (state === 'e') {
       this.setState({
         editHover: false
       })
     }
   }
 
-  editItem(todo) {
-
-  }
-
   render() {
     return (
-      <tr className='todoItemRow' style={{ backgroundColor: this.state.completed === "true" ? 'darkgrey' : 'darkslategrey' }}>
-        <td onClick={this.completed.bind(this)} colSpan={3}>{this.props.todo.todo}</td>
+      <tr
+        className='todoItemRow'
+        style={
+          { backgroundColor: this.state.completed === "true" ? 'darkgrey' : 'darkcyan', 
+            textDecoration: this.state.completed === "true" ? 'line-through' : 'none'
+          }}>
+        <td
+          onClick={() => this.completed()}
+          colSpan={3}>{this.props.todo.todo}</td>
         <td>
           <img
-            className='editIcon' 
-            onClick={() => TodoServices.editTodo()} 
-            onMouseEnter={() => this.mouseEnter('e')} 
-            onMouseLeave={() => this.mouseLeave('e')} 
+            className='editIcon'
+            onClick={() => this.setModalShow(true)}
+            onMouseEnter={() => this.mouseEnter('e')}
+            onMouseLeave={() => this.mouseLeave('e')}
             src={this.state.editHover ? edith : editimg}
           />
-          <img 
+          <img
             className='deleteIcon'
-            onClick={() => this.props.delete(this.props.todo.todo)} 
-            onMouseEnter={() => this.mouseEnter('d')} 
-            onMouseLeave={() =>  this.mouseLeave('d')} 
+            onClick={() => this.props.delete(this.props.todo.todo)}
+            onMouseEnter={() => this.mouseEnter('d')}
+            onMouseLeave={() => this.mouseLeave('d')}
             src={this.state.deleteHover ? delh : del}
           />
         </td>
+        {this.state.modalShow === true ? <EditModal 
+        show={this.state.modalShow}
+        onHide={() => this.setModalShow(false)}
+        edit={this.props.todo.todo}
+        /> : null}
       </tr>
     )
   }

@@ -11,13 +11,13 @@ const deleteToDo = (todo) => {
   .catch((err) => console.log(err))
 };
 
-const editTodo = (todo) => {
+const editTodo = (todo, edited) => {
   return fetch(`http://localhost:3000/edittodo/`, {
       method: 'PUT',
       headers: {
           'Content-Type': 'application/json'
       },
-          body: JSON.stringify({ todo })
+          body: JSON.stringify({ todo, edited })
       })
       .then((res) => res.json())
       .catch((err) => console.log(err))

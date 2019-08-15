@@ -1,5 +1,6 @@
 body {
-  background-color: rgb(172, 154, 163);
+  background-color: #62929E;
+  margin: 0;
 }
 
 .addToDo {
@@ -8,7 +9,12 @@ body {
 }
 
 .title {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F3F9D2;
+  height: 10%;
+  margin: 0;
 }
 
 .divToDoList {
@@ -20,14 +26,13 @@ body {
 .todoList {
   display: flex;
   justify-content: center;
-  /* border: 1px solid black; */
   width: 50%;
   border-collapse: collapse;
   text-align: center;
 }
 
 .todoItemRow {
-  background-color: darkcyan;
+  background-color: #C6C5B9;
   border: 1px solid black;
   text-align: center;
   padding: 10px;
@@ -35,6 +40,7 @@ body {
 }
 
 .listTbody {
+  padding-top: 10px;
   display: table;
   justify-content: center;
 }

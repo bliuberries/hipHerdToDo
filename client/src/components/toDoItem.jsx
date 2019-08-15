@@ -80,13 +80,17 @@ class ToDoItem extends React.Component {
             textDecoration: this.state.completed === "true" ? 'line-through' : 'none', 
           }}>
         <td onClick={() => this.completed()}>
-          <input type="checkbox" className='checkBox' checked={
-            this.state.completed === "true" ? true : false
-          }/>
+          <input 
+            type="checkbox" 
+            className='checkBox' 
+            checked={
+              this.state.completed === "true" ? true : false
+            }
+            readOnly={true}
+          />
         </td>
         <td
-          // onClick={() => this.completed()}
-          colSpan={3}>{this.props.todo.todo}
+          colSpan={2}>{this.props.todo.todo}
         </td>
         <td>
           <img
@@ -104,8 +108,8 @@ class ToDoItem extends React.Component {
             src={this.state.deleteHover ? delh : del}
           />
         </td>
-        {/* <div className='modalContainer'> */}
-        {this.state.modalShow === true ? <EditModal
+        {this.state.modalShow === true ? 
+        <EditModal
           show={this.state.modalShow}
           onHide={() => {
             this.setModalShow(false)
@@ -113,7 +117,6 @@ class ToDoItem extends React.Component {
           edit={this.props.todo.todo}
           index={this.props.index}
         /> : null}
-        {/* </div> */}
       </tr>
     )
   }

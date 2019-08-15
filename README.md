@@ -24,5 +24,5 @@ npm run react-dev
 
 ### Run server
 ```sh
-npm run server-dev
+npm run start
 ```

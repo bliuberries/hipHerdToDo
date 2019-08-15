@@ -98,15 +98,16 @@ class ToDoItem extends React.Component {
             src={this.state.deleteHover ? delh : del}
           />
         </td>
+        {/* <div className='modalContainer'> */}
         {this.state.modalShow === true ? <EditModal 
         show={this.state.modalShow}
         onHide={() => {
-          // e.preventDefault();
           this.setModalShow(false)
         }}
         edit={this.props.todo.todo}
         index={this.props.index}
         /> : null}
+        {/* </div> */}
       </tr>
     )
   }

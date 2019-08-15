@@ -2,6 +2,10 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import TodoServices from '../../services/toDoServices.js';
 
+const modulStyle = {
+  paddingTop: '1.5%'
+}
+
 export default class EditModal extends React.Component {
   constructor(props) {
     super(props)
@@ -25,12 +29,15 @@ export default class EditModal extends React.Component {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         className='editModal'
+        // style={modulStyle}
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter" />
         </Modal.Header>
         <Modal.Body>
-          <form className='addToDo' onSubmit={(e) => {
+          <form className='addToDo'
+             style={modulStyle}
+            onSubmit={(e) => {
             e.preventDefault();
             TodoServices.editTodo(this.props.edit, this.state.edit)
             .then(() => {

@@ -56,5 +56,15 @@ body {
 }
 
 .editModal {
-  background-color: darkslategrey
+  position: relative;
+  display: flex;
+  margin-left: 35%;
+  text-align: center;
+  justify-content: center;
+  background-color: blanchedalmond;
+  width: 30%;
+  height: 10%;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px;
 }

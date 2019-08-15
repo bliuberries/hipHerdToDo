@@ -6,7 +6,7 @@ This app allows users to create a basic todo-list to keep tabs on and refer back
 >Used to create a modal for editing todos
 
 ## Database
--MySQL
+- MySQL
 
 ## Installation
 

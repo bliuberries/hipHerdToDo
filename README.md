@@ -4,7 +4,8 @@ This app allows users to create a basic todo-list to keep tabs on and refer back
 ## Technologies
 - BootStrap
 >Used to create a modal for editing todos
-##Database
+
+## Database
 -MySQL
 
 ## Installation

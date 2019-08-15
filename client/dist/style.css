@@ -20,7 +20,7 @@ body {
 .todoList {
   display: flex;
   justify-content: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 50%;
   border-collapse: collapse;
   text-align: center;
@@ -54,17 +54,36 @@ body {
 .deleteButton {
   position: relative;
 }
-
+/* Modal CSS */
 .editModal {
-  position: relative;
-  display: flex;
-  margin-left: 35%;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.9);;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  
+}
+
+.editForm {
+  background-color: white;
   text-align: center;
-  justify-content: center;
-  background-color: blanchedalmond;
-  width: 30%;
-  height: 10%;
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 2px 2px 4px;
+  margin-top: 25%;
+  margin-left: 37.5%;
+  width: 25%;
+  height: 12.5%;
+}
+
+.addToDo {
+  margin-top: 4%;
+}
+
+/* checkbox icon */
+
+.checkBox {
+  cursor: pointer;
 }

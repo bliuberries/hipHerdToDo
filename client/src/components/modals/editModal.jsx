@@ -34,7 +34,7 @@ export default class EditModal extends React.Component {
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter" />
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='editForm'>
           <form className='addToDo'
              style={modulStyle}
             onSubmit={(e) => {
@@ -45,7 +45,6 @@ export default class EditModal extends React.Component {
                 {
                   bubbles: false,
                   detail: {
-                    // original: this.props.edit,
                     edited: this.state.edit,
                     index: this.props.index
                   }
@@ -53,14 +52,12 @@ export default class EditModal extends React.Component {
                 this.props.onHide()
             })
             }}>
-            <input type="text" value={this.state.edit} name='edit' onChange={(e) => this.onChange(e)} />
-            {/* <input type="submit" onSubmit={(e) => {
-              e.preventDefault()
-              this.props.onHide()}}/> */}
+            <textarea type="text" value={this.state.edit} name='edit' onChange={(e) => this.onChange(e)} />
+            <button>Update</button> 
           </form>
+          <button onClick={this.props.onHide}>Close</button>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={this.props.onHide}>Close</button>
         </Modal.Footer>
       </Modal>
     );

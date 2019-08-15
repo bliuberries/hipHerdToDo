@@ -76,12 +76,18 @@ class ToDoItem extends React.Component {
       <tr
         className='todoItemRow'
         style={
-          { backgroundColor: this.state.completed === "true" ? 'darkgrey' : 'darkcyan', 
-            textDecoration: this.state.completed === "true" ? 'line-through' : 'none'
+          {
+            textDecoration: this.state.completed === "true" ? 'line-through' : 'none', 
           }}>
+        <td onClick={() => this.completed()}>
+          <input type="checkbox" className='checkBox' checked={
+            this.state.completed === "true" ? true : false
+          }/>
+        </td>
         <td
-          onClick={() => this.completed()}
-          colSpan={3}>{this.props.todo.todo}</td>
+          // onClick={() => this.completed()}
+          colSpan={3}>{this.props.todo.todo}
+        </td>
         <td>
           <img
             className='editIcon'
@@ -99,13 +105,13 @@ class ToDoItem extends React.Component {
           />
         </td>
         {/* <div className='modalContainer'> */}
-        {this.state.modalShow === true ? <EditModal 
-        show={this.state.modalShow}
-        onHide={() => {
-          this.setModalShow(false)
-        }}
-        edit={this.props.todo.todo}
-        index={this.props.index}
+        {this.state.modalShow === true ? <EditModal
+          show={this.state.modalShow}
+          onHide={() => {
+            this.setModalShow(false)
+          }}
+          edit={this.props.todo.todo}
+          index={this.props.index}
         /> : null}
         {/* </div> */}
       </tr>

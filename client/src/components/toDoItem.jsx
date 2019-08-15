@@ -100,8 +100,12 @@ class ToDoItem extends React.Component {
         </td>
         {this.state.modalShow === true ? <EditModal 
         show={this.state.modalShow}
-        onHide={() => this.setModalShow(false)}
+        onHide={() => {
+          // e.preventDefault();
+          this.setModalShow(false)
+        }}
         edit={this.props.todo.todo}
+        index={this.props.index}
         /> : null}
       </tr>
     )

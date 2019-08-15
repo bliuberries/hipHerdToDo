@@ -19,7 +19,7 @@ const editTodo = (todo, edited) => {
       },
           body: JSON.stringify({ todo, edited })
       })
-      .then((res) => res.json())
+      .then()
       .catch((err) => console.log(err))
 };
 

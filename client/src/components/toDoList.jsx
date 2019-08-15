@@ -30,6 +30,14 @@ class ToDoList extends Component {
       )
     });
 
+    document.addEventListener("editTodo", (e) => {
+      const newState = this.state.list
+      newState[e.detail.index].todo = e.detail.edited
+      this.setState(
+        this.state.list = newState
+      )
+    });
+
     TodoServices.getAllTodos().then(data => {
       this.setState({
         list: data

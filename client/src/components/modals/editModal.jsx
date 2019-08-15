@@ -30,9 +30,26 @@ export default class EditModal extends React.Component {
           <Modal.Title id="contained-modal-title-vcenter" />
         </Modal.Header>
         <Modal.Body>
-          <form className='addToDo' onSubmit={() => TodoServices.editTodo(this.props.edit, this.state.edit)}>
+          <form className='addToDo' onSubmit={(e) => {
+            e.preventDefault();
+            TodoServices.editTodo(this.props.edit, this.state.edit)
+            .then(() => {
+              document.dispatchEvent(new CustomEvent('editTodo',
+                {
+                  bubbles: false,
+                  detail: {
+                    // original: this.props.edit,
+                    edited: this.state.edit,
+                    index: this.props.index
+                  }
+                }))
+                this.props.onHide()
+            })
+            }}>
             <input type="text" value={this.state.edit} name='edit' onChange={(e) => this.onChange(e)} />
-            <input type="submit" onSubmit={this.props.onHide}/>
+            {/* <input type="submit" onSubmit={(e) => {
+              e.preventDefault()
+              this.props.onHide()}}/> */}
           </form>
         </Modal.Body>
         <Modal.Footer>

@@ -7,7 +7,10 @@ This app allows users to create a basic todo-list to keep tabs on and refer back
 
 ## Database
 - MySQL
-
+From within the root directory:
+```sh
+mysql -u root < database.schema.sql
+```
 ## Installation
 
 ### Installing Dependencies

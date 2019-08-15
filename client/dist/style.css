@@ -93,3 +93,9 @@ body {
 .checkBox {
   cursor: pointer;
 }
+
+.blank_row
+{
+    height: 20px !important; /* overwrites any other rules */
+    background-color: #62929E;
+}

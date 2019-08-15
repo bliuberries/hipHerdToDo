@@ -29,30 +29,36 @@ export default class EditModal extends React.Component {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         className='editModal'
-        // style={modulStyle}
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter" />
         </Modal.Header>
         <Modal.Body className='editForm'>
-          <form className='addToDo'
-             style={modulStyle}
+          <form 
+            className='addToDo'
+            style={modulStyle}
             onSubmit={(e) => {
-            e.preventDefault();
-            TodoServices.editTodo(this.props.edit, this.state.edit)
-            .then(() => {
-              document.dispatchEvent(new CustomEvent('editTodo',
-                {
-                  bubbles: false,
-                  detail: {
-                    edited: this.state.edit,
-                    index: this.props.index
-                  }
-                }))
-                this.props.onHide()
-            })
-            }}>
-            <textarea type="text" value={this.state.edit} name='edit' onChange={(e) => this.onChange(e)} />
+              e.preventDefault();
+              TodoServices
+                .editTodo(this.props.edit, this.state.edit)
+                .then(() => {
+                  document.dispatchEvent(new CustomEvent('editTodo', {
+                    bubbles: false,
+                    detail: {
+                      edited: this.state.edit,
+                      index: this.props.index
+                    }
+                  }));
+                  this.props.onHide();
+                })
+            }}
+          >
+            <textarea 
+              type="text" 
+              value={this.state.edit} 
+              name='edit' 
+              onChange={(e) => this.onChange(e)} 
+            />
             <button>Update</button> 
           </form>
           <button onClick={this.props.onHide}>Close</button>

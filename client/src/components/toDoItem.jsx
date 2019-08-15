@@ -32,19 +32,18 @@ class ToDoItem extends React.Component {
       .then(() => {
         this.setState({
           completed: this.state.completed === "true" ? "false" : "true"
-        })
+        });
       })
       .then(() => {
-        document.dispatchEvent(new CustomEvent('markComplete',
-          {
-            bubbles: false,
-            detail: {
-              title: this.props.todo.todo,
-              completed: this.state.completed,
-              index: this.props.index
-            }
-          }))
-      })
+        document.dispatchEvent(new CustomEvent('markComplete', {
+          bubbles: false,
+          detail: {
+            title: this.props.todo.todo,
+            completed: this.state.completed,
+            index: this.props.index
+          }
+        }));
+      });
   }
 
   mouseEnter(state) {
@@ -78,7 +77,8 @@ class ToDoItem extends React.Component {
         style={
           {
             textDecoration: this.state.completed === "true" ? 'line-through' : 'none', 
-          }}>
+          }}
+      >
         <td onClick={() => this.completed()}>
           <input 
             type="checkbox" 
@@ -89,9 +89,7 @@ class ToDoItem extends React.Component {
             readOnly={true}
           />
         </td>
-        <td
-          colSpan={2}>{this.props.todo.todo}
-        </td>
+        <td colSpan={2}>{this.props.todo.todo}</td>
         <td>
           <img
             className='editIcon'
@@ -108,15 +106,18 @@ class ToDoItem extends React.Component {
             src={this.state.deleteHover ? delh : del}
           />
         </td>
-        {this.state.modalShow === true ? 
-        <EditModal
-          show={this.state.modalShow}
-          onHide={() => {
-            this.setModalShow(false)
-          }}
-          edit={this.props.todo.todo}
-          index={this.props.index}
-        /> : null}
+        {
+          this.state.modalShow === true ? 
+          <EditModal
+            show={this.state.modalShow}
+            onHide={() => {
+              this.setModalShow(false)
+            }}
+            edit={this.props.todo.todo}
+            index={this.props.index}
+          /> 
+          : null
+        }
       </tr>
     )
   }

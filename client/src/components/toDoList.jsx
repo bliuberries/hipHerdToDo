@@ -58,11 +58,11 @@ class ToDoList extends Component {
 
   renderList() {
     return this.state.list.map((todo, index) => (
-      this.state.displayCompleted ===  'showAll' ? 
-      <ToDoItem todo={todo} key={index} index={index} delete={this.deleteOne} /> 
-      : this.state.displayCompleted ===  todo.completed ? 
-      <ToDoItem todo={todo} key={index} index={index} delete={this.deleteOne} /> 
-      : null
+      this.state.displayCompleted === 'showAll' ?
+        <ToDoItem todo={todo} key={index} index={index} delete={this.deleteOne} />
+        : this.state.displayCompleted === todo.completed ?
+          <ToDoItem todo={todo} key={index} index={index} delete={this.deleteOne} />
+          : null
     ))
   }
 
@@ -87,34 +87,41 @@ class ToDoList extends Component {
       <div className="divToDoList">
         <table className="todoList">
           <tbody className='listTbody'>
-            <tr>
-              <td className='listTitle' colSpan={4}>Things to chip away at...</td>
-            </tr>
             {this.renderList()}
+            <tr class="blank_row">
+              <td colspan="4"></td>
+            </tr>
             <tr className='bottomButtons'>
               <td>
-                <button className='deleteButton'
-                  onClick={() => this.deleteTodos()}>
+                <button
+                  className='deleteButton'
+                  onClick={() => this.deleteTodos()}
+                >
                   Delete All
-                  </button>
+                </button>
               </td>
               <td >
-                <button className='showComplete'
-                  onClick={() => this.showToDos('true')}>
+                <button
+                  className='showComplete'
+                  onClick={() => this.showToDos('true')}
+                >
                   Complete
-                  </button>
+                </button>
               </td>
               <td >
-                <button className='showIncomplete'
+                <button
+                  className='showIncomplete'
                   onClick={() => this.showToDos('false')}>
                   Incomplete
                   </button>
               </td>
               <td >
-                <button className='showAll'
-                  onClick={() => this.showToDos('showAll')}>
+                <button
+                  className='showAll'
+                  onClick={() => this.showToDos('showAll')}
+                >
                   Show All
-                  </button>
+                </button>
               </td>
             </tr>
           </tbody>

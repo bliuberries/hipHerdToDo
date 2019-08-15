@@ -13,7 +13,7 @@ This app allows users to create a basic todo-list to keep tabs on and refer back
 brew install mysql
 ```
 
-From within the root directory:
+To configure the database/table for MySql
 
 ```sh
 mysql -u root < database.schema.sql
@@ -34,7 +34,7 @@ From within the root directory:
 ```sh
 npm install
 ```
-### Setting up Webpack
+### Setting up your bundle.js
 
 ```sh
 npm run react-dev
@@ -44,3 +44,5 @@ npm run react-dev
 ```sh
 npm run start
 ```
+
+#### Lastly, go to http://localhost:3000 to view the app and start organizing your schedule! :) 

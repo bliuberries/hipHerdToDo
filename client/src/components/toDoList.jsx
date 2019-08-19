@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ToDoItem from './toDoItem.jsx'
 import TodoServices from '../services/toDoServices.js';
 
-class ToDoList extends Component {
+class ToDoList extends React.Component {
   constructor(props) {
     super()
     this.state = {
@@ -37,10 +37,11 @@ class ToDoList extends Component {
         this.state.list = newState
       )
     });
-
     TodoServices.getAllTodos().then(data => {
       this.setState({
         list: data
+      }, () => {
+        console.log(this.state.list);
       });
     });
   }
@@ -72,6 +73,8 @@ class ToDoList extends Component {
       .then(() => {
         this.setState({
           list: []
+        }, () => {
+          console.log(this.state.list);
         });
       })
   }

@@ -5,11 +5,11 @@ class AddToDo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: 'b',
+      todo: '',
     }
 
-    this.addToList = this.addToList.bind(this)
-    this.onChange = this.onChange.bind(this)
+    this.addToList = this.addToList.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   onChange(e) {
@@ -46,6 +46,7 @@ class AddToDo extends React.Component {
         <label>
           Todo:
           <input 
+            className='inputField'
             type="text" 
             value={this.state.todo} 
             name='todo' 

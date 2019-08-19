@@ -56,7 +56,6 @@ app.put('/markincomplete', (req, res) => {
 })
 
 app.put('/edittodo', (req, res) => {
-  console.log(req.body.todo, req.body.edited, 'update API');
   db.connection.query(`UPDATE mytodo SET todo = "${req.body.edited}" WHERE todo = "${req.body.todo}"`, (err, data) => {
     res.send();
   })

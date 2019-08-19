@@ -88,8 +88,8 @@ class ToDoList extends Component {
         <table className="todoList">
           <tbody className='listTbody'>
             {this.renderList()}
-            <tr class="blank_row">
-              <td colspan="4"></td>
+            <tr className="blank_row">
+              <td colSpan="4"></td>
             </tr>
             <tr className='bottomButtons'>
               <td>

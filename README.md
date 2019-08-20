@@ -55,3 +55,9 @@ npm run start
 ```
 
 #### Lastly, go to http://localhost:3000 to view the app and start organizing your schedule! :) 
+
+
+### Disclaimer
+>Cannot run on IE. Did not test on Edge. Works fine on Chrome/Safari/Firefox.
+>functionally works on all iPhones/Pixel Phones/iPads/Galaxy
+>>Cannot visibly see buttons(text is visible)

@@ -16,6 +16,8 @@ npm run test
 
 ## Database
 - MySQL
+>If you do not have MySQL, data will not persist, but will otherwise work. All information will be lost upon refresh.
+
 >If you do not already have MySQL installed, run the following in your command line
 
 ```sh
@@ -31,6 +33,7 @@ mysql -u root < database.schema.sql
 Then to access your database
 
 ```sh
+mysql.server start
 mysql -u root;
 use hipherdToDo;
 ```

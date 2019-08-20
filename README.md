@@ -7,6 +7,13 @@ This app allows users to create a basic todo-list to keep tabs on and refer back
 - React
 >Used for everything else this app has to provide for you
 
+## Testing
+- Jest / Enzyme
+Unit testing for 'addTodo' and 'toDoList'
+```sh
+npm run test
+```
+
 ## Database
 - MySQL
 >If you do not already have MySQL installed, run the following in your command line

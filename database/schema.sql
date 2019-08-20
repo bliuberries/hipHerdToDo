@@ -11,9 +11,9 @@ CREATE TABLE mytodo (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE projectusers (
-  id INT NOT NULL AUTO_INCREMENT,
-  namefirst VARCHAR(255) NOT NULL,
-  namelast VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
-);
+-- CREATE TABLE projectusers (
+--   id INT NOT NULL AUTO_INCREMENT,
+--   namefirst VARCHAR(255) NOT NULL,
+--   namelast VARCHAR(255) NOT NULL,
+--   PRIMARY KEY (id)
+-- );

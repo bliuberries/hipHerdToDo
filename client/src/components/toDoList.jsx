@@ -73,9 +73,7 @@ class ToDoList extends React.Component {
       .then(() => {
         this.setState({
           list: []
-        }, () => {
-          console.log(this.state.list);
-        });
+        })
       })
   }
 

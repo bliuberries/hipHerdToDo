@@ -1,18 +1,21 @@
 import React from 'react';
 import ToDoItem from './toDoItem.jsx'
 import TodoServices from '../services/toDoServices.js';
+import ConfirmModal from './modals/confirmModal.jsx';
 
 class ToDoList extends React.Component {
   constructor(props) {
     super()
     this.state = {
       list: [],
-      displayCompleted: 'showAll'
+      displayCompleted: 'showAll',
+      modalShow: false,
     }
 
-    this.showToDos = this.showToDos.bind(this)
-    this.deleteOne = this.deleteOne.bind(this)
-    this.deleteTodos = this.deleteTodos.bind(this)
+    this.setModalShow = this.setModalShow.bind(this);
+    this.showToDos = this.showToDos.bind(this);
+    this.deleteOne = this.deleteOne.bind(this);
+    this.deleteTodos = this.deleteTodos.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +47,12 @@ class ToDoList extends React.Component {
         console.log(this.state.list);
       });
     });
+  }
+
+  setModalShow(bool) {
+    this.setState({
+      modalShow: bool
+    })
   }
 
   deleteOne(data) {
@@ -96,7 +105,7 @@ class ToDoList extends React.Component {
               <td>
                 <button
                   className='deleteButton'
-                  onClick={() => this.deleteTodos()}
+                  onClick={() => this.setModalShow(true)}
                 >
                   Delete All
                 </button>
@@ -124,6 +133,19 @@ class ToDoList extends React.Component {
                   Show All
                 </button>
               </td>
+              {
+                this.state.modalShow === true ?
+                  <ConfirmModal
+                    show={this.state.modalShow}
+                    onHide={(yn) => {
+                      if(yn) {
+                        this.deleteTodos()
+                      }
+                      this.setModalShow(false)
+                    }}
+                  />
+                  : null
+              }
             </tr>
           </tbody>
         </table>

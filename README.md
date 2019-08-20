@@ -9,7 +9,7 @@ This app allows users to create a basic todo-list to keep tabs on and refer back
 
 ## Testing
 - Jest / Enzyme
-Unit testing for 'addTodo' and 'toDoList'
+>Unit testing for 'addTodo' and 'toDoList'
 ```sh
 npm run test
 ```

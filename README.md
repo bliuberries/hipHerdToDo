@@ -64,3 +64,7 @@ npm run start
 >Cannot run on IE. Did not test on Edge. Works fine on Chrome/Safari/Firefox.
 >functionally works on all iPhones/Pixel Phones/iPads/Galaxy
 >>Cannot visibly see buttons(text is visible)
+
+
+### Known Bugs
+>If there are multiple items and some items are marked complete, deleting items will cause the checkbox/line-through to apply to items not marked so. Refreshing/'Show All'-ing the page will display correct information.

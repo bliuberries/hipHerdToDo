@@ -26,7 +26,6 @@ body {
 .todoList {
   display: flex;
   justify-content: center;
-  width: 50%;
   border-collapse: collapse;
   text-align: center;
 }

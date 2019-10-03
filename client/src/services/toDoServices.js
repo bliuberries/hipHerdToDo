@@ -1,49 +1,38 @@
 // File for all api calls dealing with todos
 
 const deleteToDo = (todo) => {
-  return fetch(`http://localhost:3000/deletetodo/`, {
+  return fetch(`http://localhost:3000/todo/`, {
     method: 'DELETE',
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({ todo })
   })
-  .catch((err) => console.log(err))
+    .catch((err) => console.log(err))
 };
 
 const editTodo = (todo, edited) => {
-  return fetch(`http://localhost:3000/edittodo/`, {
-      method: 'PUT',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-          body: JSON.stringify({ todo, edited })
-      })
-      .then()
-      .catch((err) => console.log(err))
+  return fetch(`http://localhost:3000/todo/`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ todo, edited })
+  })
+    .then()
+    .catch((err) => console.log(err))
 };
 
 const markComplete = (todo, bool) => {
-    if (bool === "true") {
-      return fetch(`http://localhost:3000/markcomplete`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ todo, bool })
-        })
-    } else {
-      return fetch(`http://localhost:3000/markincomplete`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ todo, bool })
-        })
-    }
-  }
+  return fetch(`http://localhost:3000/markcomplete`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ todo, bool })
+    })
+}
 
 const addToList = (todo) => {
   return fetch(`http://localhost:3000/addtodo/`,
@@ -58,7 +47,7 @@ const addToList = (todo) => {
 };
 
 const deleteAll = () => {
-  return fetch(`http://localhost:3000/deleteall/`,
+  return fetch(`http://localhost:3000/todo-da/`,
     {
       method: 'DELETE',
       headers: {
@@ -70,20 +59,20 @@ const deleteAll = () => {
 };
 
 const getAllTodos = () => {
-  return fetch(`http://localhost:3000/getTodos/`, {
+  return fetch(`http://localhost:3000/todo/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     },
   })
-  .then((res) => res.json())
+    .then((res) => res.json())
 };
 
 export default {
-    deleteToDo,
-    editTodo,
-    markComplete,
-    addToList,
-    deleteAll,
-    getAllTodos
+  deleteToDo,
+  editTodo,
+  markComplete,
+  addToList,
+  deleteAll,
+  getAllTodos
 };
